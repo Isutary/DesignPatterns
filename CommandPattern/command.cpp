@@ -1,6 +1,5 @@
 #include "command.h"
 
-
 Command::~Command() {
 	std::cout << "Command destructor" << std::endl;
 }
