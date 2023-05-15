@@ -132,7 +132,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="defs.h" />
+    <ClInclude Include="draw.h" />
     <ClInclude Include="init.h" />
+    <ClInclude Include="input.h" />
     <ClInclude Include="SDLCreateRendererException.h" />
     <ClInclude Include="SDLCreateWindowException.h" />
     <ClInclude Include="SDLException.h" />
@@ -140,7 +142,9 @@
     <ClInclude Include="structs.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="draw.cpp" />
     <ClCompile Include="init.cpp" />
+    <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SDLCreateRendererException.cpp" />
     <ClCompile Include="SDLCreateWindowException.cpp" />
