@@ -15,6 +15,9 @@ void doInput(void)
 		case SDL_QUIT:
 			std::cout << "SDL_QUIT case" << std::endl;
 			break;
+		case SDL_KEYDOWN:
+			std::cout << "SDL_KEYDOWN case" << std::endl;
+			break;
 		default:
 			break;
 		}

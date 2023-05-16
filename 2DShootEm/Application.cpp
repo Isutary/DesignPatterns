@@ -1,14 +1,11 @@
 #include "Application.h"
 
-std::unique_ptr<SDL_Window, SDL_Deleter> Application::_window;
-std::unique_ptr<SDL_Renderer, SDL_Deleter> Application::_renderer;
-
-std::unique_ptr<SDL_Window, SDL_Deleter>& Application::getWindow()
+void SDL_Deleter::operator()(SDL_Window* window) const
 {
-	return _window;
+    SDL_DestroyWindow(window);
 }
 
-std::unique_ptr<SDL_Renderer, SDL_Deleter>& Application::getRenderer()
+void SDL_Deleter::operator()(SDL_Renderer* renderer) const
 {
-	return _renderer;
+    SDL_DestroyRenderer(renderer);
 }
