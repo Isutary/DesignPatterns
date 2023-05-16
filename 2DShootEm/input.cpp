@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../Dependencies/SDL2/include/SDL.h"
+#include "SDL.h"
 
 #include "input.h"
 

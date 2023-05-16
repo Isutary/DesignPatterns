@@ -1,10 +1,9 @@
 #include <iostream>
 
-#include "../Dependencies/SDL2/include/SDL.h"
+#include "SDL.h"
 
 #include "init.h"
 #include "SDLException.h"
-#include "structs.h"
 using namespace std;
 
 int main(int argc, char* argv[])

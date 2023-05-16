@@ -1,16 +1,14 @@
-#include "../Dependencies/SDL2/include/SDL.h"
+#include "SDL.h"
 
 #include "init.h"
 #include "defs.h"
-#include "structs.h"
+#include "Application.h"
 #include "SDLInitException.h"
 #include "SDLCreateWindowException.h"
 #include "SDLCreateRendererException.h"
 
 void initSDL(void) 
 {
-	App app{};
-
 	int rendererFlags, windowFlags;
 
 	rendererFlags = SDL_RENDERER_ACCELERATED;
@@ -21,16 +19,16 @@ void initSDL(void)
 		throw SDLInitException(SDL_GetError());
 	}
 
-	app.window = std::unique_ptr<SDL_Window, SDL_Deleter>(SDL_CreateWindow("2D Shoot 'Em", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, windowFlags));
-	if (!app.window)
+	Application::getWindow() = std::unique_ptr<SDL_Window, SDL_Deleter>(SDL_CreateWindow("2D Shoot 'Em", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, windowFlags));
+	if (!Application::getWindow())
 	{
 		throw SDLCreateWindowException(SDL_GetError());
 	}
 
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 
-	app.renderer = std::unique_ptr<SDL_Renderer, SDL_Deleter>(SDL_CreateRenderer(app.window.get(), -1, rendererFlags));
-	if (!app.renderer)
+	Application::getRenderer() = std::unique_ptr<SDL_Renderer, SDL_Deleter>(SDL_CreateRenderer(Application::getWindow().get(), -1, rendererFlags));
+	if (!Application::getRenderer())
 	{
 		throw SDLCreateRendererException(SDL_GetError());
 	}

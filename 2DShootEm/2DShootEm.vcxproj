@@ -104,13 +104,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Projects\DesignPatterns\Dependencies\SDL2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\SDL2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -139,13 +139,14 @@
     <ClInclude Include="SDLCreateWindowException.h" />
     <ClInclude Include="SDLException.h" />
     <ClInclude Include="SDLInitException.h" />
-    <ClInclude Include="structs.h" />
+    <ClInclude Include="Application.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="draw.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Application.cpp" />
     <ClCompile Include="SDLCreateRendererException.cpp" />
     <ClCompile Include="SDLCreateWindowException.cpp" />
     <ClCompile Include="SDLInitException.cpp" />
