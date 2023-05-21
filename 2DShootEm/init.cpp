@@ -19,17 +19,19 @@ void initSDL(void)
 		throw SDLInitException(SDL_GetError());
 	}
 
-	Application::window = std::unique_ptr<SDL_Window, SDL_Deleter>(SDL_CreateWindow("2D Shoot 'Em", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, windowFlags));
-	if (!Application::window)
+	SDL_Window* window = SDL_CreateWindow("2D Shoot 'Em", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, windowFlags);
+	if (!window)
 	{
 		throw SDLCreateWindowException(SDL_GetError());
 	}
 
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 
-	Application::renderer = std::unique_ptr<SDL_Renderer, SDL_Deleter>(SDL_CreateRenderer(Application::window.get(), -1, rendererFlags));
-	if (!Application::renderer)
+	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, rendererFlags);
+	if (!renderer)
 	{
 		throw SDLCreateRendererException(SDL_GetError());
 	}
+
+	Application::getInstance(window, renderer);
 }

@@ -1,11 +1,26 @@
 #include "Application.h"
 
-void SDL_Deleter::operator()(SDL_Window* window) const
+Application::Application(SDL_Window* window, SDL_Renderer* renderer) 
 {
-    SDL_DestroyWindow(window);
+    _window = window;
+    _renderer = renderer;
 }
 
-void SDL_Deleter::operator()(SDL_Renderer* renderer) const
+Application* Application::getInstance(SDL_Window* window, SDL_Renderer* renderer)
 {
-    SDL_DestroyRenderer(renderer);
+    if (!_application) 
+    {
+        _application = new Application(window, renderer);
+    }
+    return _application;
+}
+
+SDL_Window* Application::getWindow()
+{
+    return _window;
+}
+
+SDL_Renderer* Application::getRenderer()
+{
+    return _renderer;
 }
