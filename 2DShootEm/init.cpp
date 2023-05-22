@@ -1,4 +1,5 @@
 #include "SDL.h"
+#include "SDL_image.h"
 
 #include "init.h"
 #include "defs.h"
@@ -9,6 +10,8 @@
 
 void initSDL(void) 
 {
+	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
+
 	int rendererFlags, windowFlags;
 
 	rendererFlags = SDL_RENDERER_ACCELERATED;
