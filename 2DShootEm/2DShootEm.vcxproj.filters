@@ -48,6 +48,12 @@
     <ClInclude Include="draw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLLoadTextureException.h">
+      <Filter>Header Files\Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="init.cpp">
@@ -73,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="Application.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLLoadTextureException.cpp">
+      <Filter>Source Files\Exceptions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

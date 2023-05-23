@@ -140,6 +140,8 @@
     <ClInclude Include="SDLException.h" />
     <ClInclude Include="SDLInitException.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="SDLLoadTextureException.h" />
+    <ClInclude Include="structs.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -150,6 +152,7 @@
     <ClCompile Include="SDLCreateRendererException.cpp" />
     <ClCompile Include="SDLCreateWindowException.cpp" />
     <ClCompile Include="SDLInitException.cpp" />
+    <ClCompile Include="SDLLoadTextureException.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

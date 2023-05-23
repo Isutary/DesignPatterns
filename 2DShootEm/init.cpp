@@ -10,8 +10,6 @@
 
 void initSDL(void) 
 {
-	IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG);
-
 	int rendererFlags, windowFlags;
 
 	rendererFlags = SDL_RENDERER_ACCELERATED;
@@ -35,6 +33,8 @@ void initSDL(void)
 	{
 		throw SDLCreateRendererException(SDL_GetError());
 	}
+
+	IMG_Init(IMG_INIT_PNG);
 
 	Application::getInstance(window, renderer);
 }
