@@ -4,7 +4,7 @@
 
 #include "input.h"
 
-void doInput(void) 
+void doInput() 
 {
 	SDL_Event event;
 

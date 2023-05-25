@@ -1,7 +1,13 @@
 #include "Application.h"
+#include "ApplicationException.h"
 
 Application::Application(SDL_Window* window, SDL_Renderer* renderer) 
 {
+    if (!window && !renderer)
+    { 
+        throw ApplicationException();
+    }
+
     _window = window;
     _renderer = renderer;
 }
@@ -12,6 +18,7 @@ Application* Application::getInstance(SDL_Window* window, SDL_Renderer* renderer
     {
         _application = new Application(window, renderer);
     }
+
     return _application;
 }
 

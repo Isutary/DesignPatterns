@@ -8,8 +8,11 @@
 #include "SDLCreateWindowException.h"
 #include "SDLCreateRendererException.h"
 
-void initSDL(void) 
+void initSDL() 
 {
+	static bool initialized = false;
+	if (initialized) return;
+
 	int rendererFlags, windowFlags;
 
 	rendererFlags = SDL_RENDERER_ACCELERATED;
@@ -20,7 +23,7 @@ void initSDL(void)
 		throw SDLInitException(SDL_GetError());
 	}
 
-	SDL_Window* window = SDL_CreateWindow("2D Shoot 'Em", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, windowFlags);
+	SDL_Window* window = SDL_CreateWindow(SCREEN_TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, windowFlags);
 	if (!window)
 	{
 		throw SDLCreateWindowException(SDL_GetError());
@@ -37,4 +40,6 @@ void initSDL(void)
 	IMG_Init(IMG_INIT_PNG);
 
 	Application::getInstance(window, renderer);
+
+	initialized = true;
 }

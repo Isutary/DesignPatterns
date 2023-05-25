@@ -5,6 +5,7 @@
 #include "input.h"
 #include "structs.h"
 #include "SDLException.h"
+#include "Application.h"
 
 int main(int argc, char* argv[])
 {
@@ -12,11 +13,11 @@ int main(int argc, char* argv[])
 	{
 		initSDL();
 
-		Entity player{300, 300, loadTexture("bubu.png")};
+		Entity player{300, 300, loadTexture("sibi-default.png")};
 
 		while (true)
 		{
-			prepareScene();
+			prepareClearScene();
 			doInput();
 			blit(player.texture, player.x, player.y);
 			presentScene();

@@ -5,13 +5,13 @@
 #include "Application.h"
 #include "SDLLoadTextureException.h"
 
-void prepareScene(void)
+void prepareClearScene(Color color)
 {
-	SDL_SetRenderDrawColor(Application::getRenderer(), 96, 128, 255, 255);
+	SDL_SetRenderDrawColor(Application::getRenderer(), color.r, color.g, color.b, color.a);
 	SDL_RenderClear(Application::getRenderer());
 }
 
-void presentScene(void)
+void presentScene()
 {
 	SDL_RenderPresent(Application::getRenderer());
 }
