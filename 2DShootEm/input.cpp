@@ -1,10 +1,8 @@
-#include <iostream>
-
-#include "SDL_events.h"
+#include "SDL.h"
 
 #include "input.h"
 
-void doInput() 
+void doInput(Entity* entity) 
 {
 	SDL_Event event;
 
@@ -12,14 +10,14 @@ void doInput()
 	{
 		switch (event.type)
 		{
-		case SDL_QUIT:
-			std::cout << "SDL_QUIT case" << std::endl;
-			break;
-		case SDL_KEYDOWN:
-			std::cout << "SDL_KEYDOWN case" << std::endl;
-			break;
-		default:
-			break;
+			case SDL_KEYDOWN:
+				entity->move(&event.key);
+				break;
+			case SDL_QUIT:
+				SDL_Quit();
+				break;
+			default:
+				break;
 		}
 	}
 }

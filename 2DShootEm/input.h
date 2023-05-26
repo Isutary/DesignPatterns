@@ -1,3 +1,5 @@
 #pragma once
 
-void doInput();
+#include "Entity.h"
+
+void doInput(Entity* entity);

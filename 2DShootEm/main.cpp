@@ -3,7 +3,7 @@
 #include "init.h"
 #include "draw.h"
 #include "input.h"
-#include "structs.h"
+#include "Entity.h"
 #include "SDLException.h"
 #include "Application.h"
 
@@ -13,13 +13,13 @@ int main(int argc, char* argv[])
 	{
 		initSDL();
 
-		Entity player{300, 300, loadTexture("sibi-default.png")};
+		Entity* player = new Entity(300, 300, loadTexture("sibi-default.png"));
 
 		while (true)
 		{
 			prepareClearScene();
-			doInput();
-			blit(player.texture, player.x, player.y);
+			doInput(player);
+			blit(player->getTexture(), player->getX(), player->getY());
 			presentScene();
 			SDL_Delay(16);
 		}
