@@ -1,27 +1,23 @@
 #pragma once
 
 #include <SDL_render.h>
-#include <SDL_events.h>
+
+#include "structs.h"
 
 class Entity {
-private:
-	int _x;
-	int _y;
+protected:
+	SDL_Point _position;
 	SDL_Texture* _textrue;
-	int _speed = 20;
-	SDL_Point _size;
-	void updateX(int x);
-	void updateY(int y);
+	Size _size;
 public:
-	Entity(int x, int y, SDL_Texture* texture);
-	int getX() const;
-	int getY() const;
+	Entity(SDL_Point position, SDL_Texture* texture);
+	SDL_Point getPosition() const;
 	SDL_Texture* getTexture() const;
-	void move(SDL_KeyboardEvent* event);
+	Size getSize() const;
 };
 
-inline int Entity::getX() const { return _x; }
-
-inline int Entity::getY() const { return _y; }
+inline SDL_Point Entity::getPosition() const { return _position; }
 
 inline SDL_Texture* Entity::getTexture() const { return _textrue; }
+
+inline Size Entity::getSize() const { return _size; }

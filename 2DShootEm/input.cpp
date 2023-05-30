@@ -2,7 +2,7 @@
 
 #include "input.h"
 
-void doInput(Entity* entity) 
+void doInput(Player* entity) 
 {
 	SDL_Event event;
 
@@ -11,7 +11,7 @@ void doInput(Entity* entity)
 		switch (event.type)
 		{
 			case SDL_KEYDOWN:
-				entity->move(&event.key);
+				entity->fire();
 				break;
 			case SDL_QUIT:
 				SDL_Quit();

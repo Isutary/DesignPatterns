@@ -13,13 +13,14 @@ int main(int argc, char* argv[])
 	{
 		initSDL();
 
-		Entity* player = new Entity(300, 300, loadTexture("sibi-default.png"));
+		Application::addPlayer(new Player(SDL_Point{ 300, 300 }, loadTexture("sibi-default.png")));
 
 		while (true)
 		{
 			prepareClearScene();
-			doInput(player);
-			blit(player->getTexture(), player->getX(), player->getY());
+			doInput(Application::getPlayer());
+			blit(Application::getEntities());
+			updatePositions(Application::getMoveables());
 			presentScene();
 			SDL_Delay(16);
 		}

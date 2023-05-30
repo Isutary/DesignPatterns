@@ -1,5 +1,5 @@
 #pragma once
 
-#include "Entity.h"
+#include "Player.h"
 
-void doInput(Entity* entity);
+void doInput(Player* entity);

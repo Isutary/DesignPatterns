@@ -29,13 +29,17 @@ SDL_Texture* loadTexture(const char* filename)
 	return texture;
 }
 
-void blit(SDL_Texture* texture, int x, int y)
+void blit(std::list<Entity*>* entities)
 {
-	SDL_Rect dest{};
-	dest.x = x;
-	dest.y = y;
+	for (auto it = entities->begin(); it != entities->end(); it++)
+	{
+		SDL_Rect dest{ (*it)->getPosition().x, (*it)->getPosition().y, (*it)->getSize().h, (*it)->getSize().w};
 
-	SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
+		SDL_RenderCopy(Application::getRenderer(), (*it)->getTexture(), NULL, &dest);
+	}
+}
 
-	SDL_RenderCopy(Application::getRenderer(), texture, NULL, &dest);
+void updatePositions(std::list<Moveable*>* moveables)
+{
+	for (auto it = moveables->begin(); it != moveables->end(); it++) (*it)->move();
 }
