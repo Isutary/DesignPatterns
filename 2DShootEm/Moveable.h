@@ -5,8 +5,8 @@
 class Moveable : public Entity {
 protected:
 	unsigned int _speed;
-	void updatePosition(SDL_Point position);
+	void _updatePosition(SDL_Point position);
 public:
-	Moveable(SDL_Point position, SDL_Texture* texture);
+	Moveable(SDL_Point position, Texture* texture, unsigned int speed);
 	virtual void move() = 0;
 };

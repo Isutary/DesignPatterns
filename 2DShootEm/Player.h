@@ -1,12 +1,15 @@
 #pragma once
 
+#include "SDL_events.h"
+
 #include "Moveable.h"
 
 class Player : public Moveable {
 private:
-	int a = 10;
+	SDL_Point _newPosition;
 public:
-	Player(SDL_Point position, SDL_Texture* texture);
+	Player(SDL_Point position, Texture* texture);
 	void move() override;
-	void fire();
+	void handleInput(SDL_KeyboardEvent* event);
+	void fire(Direction direction);
 };

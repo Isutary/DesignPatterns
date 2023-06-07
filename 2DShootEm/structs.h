@@ -8,6 +8,14 @@ struct Color {
 };
 
 struct Size {
-	int h;
 	int w;
+	int h;
+};
+
+enum Direction {
+	NONE,
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
 };

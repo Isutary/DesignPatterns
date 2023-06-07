@@ -1,11 +1,10 @@
 #include "SDL.h"
 
 #include "init.h"
-#include "draw.h"
 #include "input.h"
-#include "Entity.h"
 #include "SDLException.h"
 #include "Application.h"
+#include "Renderer.h"
 
 int main(int argc, char* argv[])
 {
@@ -13,15 +12,14 @@ int main(int argc, char* argv[])
 	{
 		initSDL();
 
-		Application::addPlayer(new Player(SDL_Point{ 300, 300 }, loadTexture("sibi-default.png")));
+		Application::addPlayer(new Player(SDL_Point{ 300, 300 }, Application::getTexture("sibi-default")));
+
+		Renderer* renderer = new Renderer();
 
 		while (true)
 		{
-			prepareClearScene();
+			renderer->updateScene();
 			doInput(Application::getPlayer());
-			blit(Application::getEntities());
-			updatePositions(Application::getMoveables());
-			presentScene();
 			SDL_Delay(16);
 		}
 	}

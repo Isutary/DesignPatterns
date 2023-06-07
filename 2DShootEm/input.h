@@ -2,4 +2,4 @@
 
 #include "Player.h"
 
-void doInput(Player* entity);
+void doInput(Player* player);
