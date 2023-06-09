@@ -6,10 +6,12 @@
 
 class Player : public Moveable {
 private:
-	SDL_Point _newPosition;
+	SDL_FPoint _newPosition;
+	Path _path(SDL_FPoint player, SDL_FPoint mouse) const;
 public:
-	Player(SDL_Point position, Texture* texture);
+	Player(SDL_FPoint position, Texture* texture);
 	void move() override;
 	void handleInput(SDL_KeyboardEvent* event);
-	void fire(Direction direction);
+	void handleInput(SDL_MouseButtonEvent* event);
+	void fire(Path path, Direction direction, const char* texture);
 };

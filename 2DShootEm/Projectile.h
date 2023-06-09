@@ -4,9 +4,14 @@
 
 class Projectile : public Moveable {
 private:
+	Path _path;
 	Direction _direction;
+	float _slope;
+	float _intercept;
 	bool _boundCheck();
+	void _setSlopeAndIntercept();
+	float _distance();
 public:
-	Projectile(SDL_Point position, Texture* texture, Direction direction, unsigned int speed = 20);
+	Projectile(SDL_FPoint position, Texture* texture, Path path, Direction direction);
 	void move() override;
 };

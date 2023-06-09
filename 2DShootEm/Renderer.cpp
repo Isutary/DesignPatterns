@@ -15,9 +15,9 @@ void Renderer::drawEntities()
 
 	for (auto it = entities->begin(); it != entities->end(); it++)
 	{
-		SDL_Rect dest{ (*it)->getPosition().x, (*it)->getPosition().y, (*it)->getSize().h, (*it)->getSize().w};
+		SDL_FRect dest{ (*it)->getPosition().x, (*it)->getPosition().y, (*it)->getSize().h, (*it)->getSize().w};
 
-		SDL_RenderCopy(Application::getRenderer(), (*it)->getTexture(), NULL, &dest);
+		SDL_RenderCopyF(Application::getRenderer(), (*it)->getTexture(), NULL, &dest);
 	}
 }
 

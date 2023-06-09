@@ -13,6 +13,9 @@ void doInput(Player* player)
 			case SDL_KEYDOWN:
 				player->handleInput(&event.key);
 				break;
+			case SDL_MOUSEBUTTONDOWN:
+				player->handleInput(&event.button);
+				break;
 			case SDL_QUIT:
 				SDL_Quit();
 				break;

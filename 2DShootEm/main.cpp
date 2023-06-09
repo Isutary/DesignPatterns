@@ -2,6 +2,7 @@
 
 #include "init.h"
 #include "input.h"
+#include "capFrameRate.h"
 #include "SDLException.h"
 #include "Application.h"
 #include "Renderer.h"
@@ -10,9 +11,12 @@ int main(int argc, char* argv[])
 {
 	try 
 	{
+		long then = 0;
+		long remainder = 0;
+
 		initSDL();
 
-		Application::addPlayer(new Player(SDL_Point{ 300, 300 }, Application::getTexture("sibi-default")));
+		Application::addPlayer(new Player(SDL_FPoint{ 300, 300 }, Application::getTexture("sibi-default")));
 
 		Renderer* renderer = new Renderer();
 
@@ -20,7 +24,7 @@ int main(int argc, char* argv[])
 		{
 			renderer->updateScene();
 			doInput(Application::getPlayer());
-			SDL_Delay(16);
+			capFrameRate(&then, &remainder);
 		}
 	}
 	catch (SDLException& e) {

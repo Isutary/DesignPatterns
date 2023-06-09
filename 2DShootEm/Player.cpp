@@ -3,7 +3,18 @@
 #include "Application.h"
 #include "defs.h"
 
-Player::Player(SDL_Point position, Texture* texture) : Moveable(position, texture, PLAYER_SPEED), _newPosition(position) { }
+std::function<float(float)> Player::_path(SDL_FPoint point1, SDL_FPoint point2) const
+{
+	if (point2.x - point1.x == 0) return [k = point1.x](float x) { return k; };
+	if (point2.y - point1.y == 0) return [n = point1.y](float x) { return n; };
+	
+	float k = (point2.y - point1.y) / (point2.x - point1.x);
+	float n = point1.y - k * point1.x;
+
+	return [k, n](float x) { return k * x + n; };
+}
+
+Player::Player(SDL_FPoint position, Texture* texture) : Moveable(position, texture, PLAYER_SPEED), _newPosition(position) { }
 
 void Player::move()
 {
@@ -15,22 +26,6 @@ void Player::handleInput(SDL_KeyboardEvent* event)
 {
 	switch (event->keysym.scancode)
 	{
-		case SDL_SCANCODE_UP:
-			if (event->repeat != 0) break;
-			fire(UP);
-			break;
-		case SDL_SCANCODE_DOWN:
-			if (event->repeat != 0) break;
-			fire(DOWN);
-			break;
-		case SDL_SCANCODE_LEFT:
-			if (event->repeat != 0) break;
-			fire(LEFT);
-			break;
-		case SDL_SCANCODE_RIGHT:
-			if (event->repeat != 0) break;
-			fire(RIGHT);
-			break;
 		case SDL_SCANCODE_W:
 			_newPosition.y -= _speed;
 			break;
@@ -48,32 +43,30 @@ void Player::handleInput(SDL_KeyboardEvent* event)
 	}
 }
 
-void Player::fire(Direction direction)
+void Player::handleInput(SDL_MouseButtonEvent* event)
 {
-	SDL_Point position{};
-	Texture* bullet = Application::getTexture("heart");
+	SDL_FPoint mouse{ event->x, event->y };
 
-	switch (direction)
+	Direction direction = _position.x > mouse.x ? LEFT : RIGHT;
+
+	Path path = _path(_position, mouse);
+
+	switch (event->button)
 	{
-		case UP:
-			position.x = _position.x + getSize().w / 2 - bullet->getSize().w / 2;
-			position.y = _position.y - 16;
+		case SDL_BUTTON_LEFT:
+			fire(path, direction, "heart");
 			break;
-		case DOWN:
-			position.x = _position.x + getSize().w / 2 - bullet->getSize().w / 2;
-			position.y = _position.y + getSize().h;
-			break;
-		case LEFT:
-			position.x = _position.x - 16;
-			position.y = _position.y + getSize().h / 2 - bullet->getSize().h / 2;
-			break;
-		case RIGHT:
-			position.x = _position.x + getSize().w;
-			position.y = _position.y + getSize().h / 2 - bullet->getSize().h / 2;
+		case SDL_BUTTON_RIGHT:
+			fire(path, direction, "block");
 			break;
 		default:
 			break;
 	}
+}
 
-	Application::addMoveable(new Projectile(position, bullet, direction));
+void Player::fire(Path path, Direction direction, const char* texture)
+{
+	Texture* bullet = Application::getTexture(texture);
+
+	Application::addMoveable(new Projectile(_position, bullet, path, direction));
 }

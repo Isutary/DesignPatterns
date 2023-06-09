@@ -22,27 +22,50 @@ bool Projectile::_boundCheck()
 	return false;
 }
 
-Projectile::Projectile(SDL_Point position, Texture* texture, Direction direction, unsigned int speed) : Moveable(position, texture, speed), _direction(direction) { }
+void Projectile::_setSlopeAndIntercept()
+{
+	SDL_FPoint point1{ 0, _path(0) };
+	SDL_FPoint point2{ 100, _path(100) };
+
+	_slope = (point2.y - point1.y) / (point2.x - point1.x);
+	_intercept = point1.y - _slope * point1.x;
+}
+
+float Projectile::_distance()
+{
+	using namespace std;
+
+	float x = 0;
+	float A = 1 + pow(_slope, 2);
+	float B = 2 * _slope * _intercept - 2 * _position.x - 2 * _slope * _position.y;
+	float C = pow(_position.x, 2) + pow(_intercept, 2) - 2 * _intercept * _position.y + pow(_position.y, 2) - pow(_speed, 2);
+	float D = sqrt(pow(B, 2) - 4 * A * C);
+
+	x = _direction == LEFT ? (-B - D) / (2 * A) : (-B + D) / (2 * A);
+
+	return x;
+}
+
+Projectile::Projectile(SDL_FPoint position, Texture* texture, Path path, Direction direction) : Moveable(position, texture, PROJECTILE_SPEED), _path(path), _direction(direction)
+{
+	_setSlopeAndIntercept();
+}
 
 void Projectile::move()
 {
 	if (_boundCheck()) return;
 
-	SDL_Point position = _position;
+	SDL_FPoint position = _position;
 
 	switch (_direction)
 	{
-		case UP:
-			position.y -= _speed;
-			break;
-		case DOWN:
-			position.y += _speed;
-			break;
 		case LEFT:
-			position.x -= _speed;
+			position.x = _distance();
+			position.y = _path(position.x);
 			break;
 		case RIGHT:
-			position.x += _speed;
+			position.x = _distance();
+			position.y = _path(position.x);
 			break;
 		default:
 			break;

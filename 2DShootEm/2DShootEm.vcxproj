@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationException.h" />
+    <ClInclude Include="capFrameRate.h" />
     <ClInclude Include="defs.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="init.h" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ApplicationException.cpp" />
+    <ClCompile Include="capFrameRate.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="input.cpp" />
