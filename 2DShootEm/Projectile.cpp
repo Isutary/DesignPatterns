@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "Projectile.h"
 #include "defs.h"
 
@@ -22,34 +24,17 @@ bool Projectile::_boundCheck()
 	return false;
 }
 
-void Projectile::_setSlopeAndIntercept()
+SDL_FPoint Projectile::_distance()
 {
-	SDL_FPoint point1{ 0, _path(0) };
-	SDL_FPoint point2{ 100, _path(100) };
+	SDL_FPoint point{};
 
-	_slope = (point2.y - point1.y) / (point2.x - point1.x);
-	_intercept = point1.y - _slope * point1.x;
+	point.x = cos(_theta) * _speed;
+	point.y = sin(_theta) * _speed;
+
+	return point;
 }
 
-float Projectile::_distance()
-{
-	using namespace std;
-
-	float x = 0;
-	float A = 1 + pow(_slope, 2);
-	float B = 2 * _slope * _intercept - 2 * _position.x - 2 * _slope * _position.y;
-	float C = pow(_position.x, 2) + pow(_intercept, 2) - 2 * _intercept * _position.y + pow(_position.y, 2) - pow(_speed, 2);
-	float D = sqrt(pow(B, 2) - 4 * A * C);
-
-	x = _direction == LEFT ? (-B - D) / (2 * A) : (-B + D) / (2 * A);
-
-	return x;
-}
-
-Projectile::Projectile(SDL_FPoint position, Texture* texture, Path path, Direction direction) : Moveable(position, texture, PROJECTILE_SPEED), _path(path), _direction(direction)
-{
-	_setSlopeAndIntercept();
-}
+Projectile::Projectile(SDL_FPoint position, Texture* texture, float theta, Direction direction) : Moveable(position, texture, PROJECTILE_SPEED), _theta(theta), _direction(direction) { }
 
 void Projectile::move()
 {
@@ -60,12 +45,12 @@ void Projectile::move()
 	switch (_direction)
 	{
 		case LEFT:
-			position.x = _distance();
-			position.y = _path(position.x);
+			position.x -= _distance().x;
+			position.y -= _distance().y;
 			break;
 		case RIGHT:
-			position.x = _distance();
-			position.y = _path(position.x);
+			position.x += _distance().x;
+			position.y += _distance().y;
 			break;
 		default:
 			break;
