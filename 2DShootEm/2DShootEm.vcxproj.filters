@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Functions">
       <UniqueIdentifier>{39b7b19d-521e-40a0-b7b2-a7292cdfd3ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Logic">
+      <UniqueIdentifier>{21cbc47e-cadf-461c-b236-7cac2bb95535}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Logic">
+      <UniqueIdentifier>{ce1e3f68-5b63-41cf-95b0-df83064d7e3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defs.h">
@@ -87,6 +93,12 @@
     <ClInclude Include="input.h">
       <Filter>Header Files\Functions</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="collisionDetector.h">
+      <Filter>Header Files\Logic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SDLInitException.cpp">
@@ -136,6 +148,12 @@
     </ClCompile>
     <ClCompile Include="capFrameRate.cpp">
       <Filter>Source Files\Functions</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="collisionDetector.cpp">
+      <Filter>Source Files\Logic</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -133,7 +133,9 @@
   <ItemGroup>
     <ClInclude Include="ApplicationException.h" />
     <ClInclude Include="capFrameRate.h" />
+    <ClInclude Include="collisionDetector.h" />
     <ClInclude Include="defs.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="init.h" />
     <ClInclude Include="input.h" />
@@ -154,6 +156,8 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ApplicationException.cpp" />
     <ClCompile Include="capFrameRate.cpp" />
+    <ClCompile Include="collisionDetector.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="init.cpp" />
     <ClCompile Include="input.cpp" />

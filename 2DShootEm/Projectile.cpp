@@ -10,12 +10,12 @@ bool Projectile::_boundCheck()
 	int minY = 0;
 	int maxY = SCREEN_HEIGHT - getSize().h;
 
-	if (_position.x == minX || _position.x == maxX)
+	if (getPosition().x == minX || getPosition().x == maxX)
 	{
 		_perish();
 		return true;
 	}
-	if (_position.y == minY || _position.y == maxY)
+	if (getPosition().y == minY || getPosition().y == maxY)
 	{
 		_perish();
 		return true;
@@ -40,7 +40,7 @@ void Projectile::move()
 {
 	if (_boundCheck()) return;
 
-	SDL_FPoint position = _position;
+	SDL_FPoint position = getPosition();
 
 	switch (_direction)
 	{

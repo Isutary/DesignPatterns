@@ -6,6 +6,7 @@
 #include "SDLException.h"
 #include "Application.h"
 #include "Renderer.h"
+#include "Enemy.h"
 
 int main(int argc, char* argv[])
 {
@@ -20,10 +21,17 @@ int main(int argc, char* argv[])
 
 		Renderer* renderer = new Renderer();
 
+		long a = 0;
+
 		while (true)
 		{
 			renderer->updateScene();
 			doInput(Application::getPlayer());
+			if (a-- < 0)
+			{
+				Application::addMoveable(new Enemy(SDL_FPoint{ 500, 600 }, Application::getTexture("bibi-default")));
+				a = 100;
+			}
 			capFrameRate(&then, &remainder);
 		}
 	}

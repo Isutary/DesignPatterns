@@ -10,7 +10,7 @@ void capFrameRate(long* then, long* remainder)
 
 	*remainder -= (int)*remainder;
 
-	frameTime = SDL_GetTicks() - *then;
+	frameTime = SDL_GetTicks64() - *then;
 
 	wait -= frameTime;
 
@@ -23,5 +23,5 @@ void capFrameRate(long* then, long* remainder)
 
 	*remainder += 0.667;
 
-	*then = SDL_GetTicks();
+	*then = SDL_GetTicks64();
 }

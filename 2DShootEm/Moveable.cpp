@@ -10,11 +10,11 @@ void Moveable::_updatePosition(SDL_FPoint position)
 	float minY = 0;
 	float maxY = SCREEN_HEIGHT - (float)getSize().h;
 
-	if (position.x > 0 && position.x < maxX) _position.x = position.x;
-	if (position.x <= 0) _position.x = 0;
-	if (position.x >= maxX) _position.x = maxX;
+	if (position.x > 0 && position.x < maxX) _fRect.x = position.x;
+	if (position.x <= 0) _fRect.x = 0;
+	if (position.x >= maxX) _fRect.x = maxX;
 
-	if (position.y > 0 && position.y < maxY) _position.y = position.y;
-	if (position.y <= 0) _position.y = 0;
-	if (position.y >= maxY) _position.y = maxY;
+	if (position.y > 0 && position.y < maxY) _fRect.y = position.y;
+	if (position.y <= 0) _fRect.y = 0;
+	if (position.y >= maxY) _fRect.y = maxY;
 }

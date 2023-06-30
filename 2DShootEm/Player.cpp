@@ -5,11 +5,11 @@
 
 float Player::_getTheta(SDL_FPoint point1, SDL_FPoint point2) const
 {
-	if (point2.x == point1.x) return atan(INFINITY);
+	if (point2.x == point1.x) return (float)atan(INFINITY);
 
 	float k = (point2.y - point1.y) / (point2.x - point1.x);
 
-	return atan(k);
+	return (float)atan(k);
 }
 
 Player::Player(SDL_FPoint position, Texture* texture) : Moveable(position, texture, PLAYER_SPEED), _newPosition(position) { }
@@ -17,7 +17,7 @@ Player::Player(SDL_FPoint position, Texture* texture) : Moveable(position, textu
 void Player::move()
 {
 	_updatePosition(_newPosition);
-	_newPosition = _position;
+	_newPosition = getPosition();
 }
 
 void Player::handleInput(SDL_KeyboardEvent* event)
@@ -43,15 +43,15 @@ void Player::handleInput(SDL_KeyboardEvent* event)
 
 void Player::handleInput(SDL_MouseButtonEvent* event)
 {
-	SDL_FPoint mouse{ event->x, event->y };
+	SDL_FPoint mouse{ (float)event->x, (float)event->y };
 
-	Direction direction = _position.x > mouse.x ? LEFT : RIGHT;
-	if (_position.x == mouse.x)
+	Direction direction = getPosition().x > mouse.x ? LEFT : RIGHT;
+	if (getPosition().x == mouse.x)
 	{
-		direction = _position.y > mouse.y ? LEFT : RIGHT;
+		direction = getPosition().y > mouse.y ? LEFT : RIGHT;
 	}
 
-	float theta = _getTheta(_position, mouse);
+	float theta = _getTheta(getPosition(), mouse);
 
 	switch (event->button)
 	{
@@ -70,5 +70,5 @@ void Player::fire(float theta, Direction direction, const char* texture)
 {
 	Texture* bullet = Application::getTexture(texture);
 
-	Application::addMoveable(new Projectile(_position, bullet, theta, direction));
+	Application::addMoveable(new Projectile(getPosition(), bullet, theta, direction));
 }
