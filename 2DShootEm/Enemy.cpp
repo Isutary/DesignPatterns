@@ -5,6 +5,22 @@
 #include "defs.h"
 #include "collisionDetector.h"
 
+void Enemy::_updatePosition(SDL_FPoint position)
+{
+	float minX = -(float)getSize().w;
+	float maxX = SCREEN_WIDTH;
+	float minY = -(float)getSize().h;
+	float maxY = SCREEN_HEIGHT;
+
+	if (position.x > minX && position.x < maxX) _fRect.x = position.x;
+	if (position.x <= minX) _fRect.x = minX;
+	if (position.x >= maxX) _fRect.x = maxX;
+
+	if (position.y > minY && position.y < maxY) _fRect.y = position.y;
+	if (position.y <= minY) _fRect.y = minY;
+	if (position.y >= maxY) _fRect.y = maxY;
+}
+
 bool Enemy::_boundCheck()
 {
 	if (collisionDetector(Application::getPlayer()->getFRect(), this->getFRect()))

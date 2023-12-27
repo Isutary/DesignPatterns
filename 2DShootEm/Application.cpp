@@ -26,16 +26,6 @@ Application* Application::getInstance(SDL_Window* window, SDL_Renderer* renderer
     return _application;
 }
 
-SDL_Window* Application::getWindow()
-{
-    return _window;
-}
-
-SDL_Renderer* Application::getRenderer()
-{
-    return _renderer;
-}
-
 Texture* Application::getTexture(const char* name)
 {
     for (auto it = _textures->begin(); it != _textures->end(); it++)
@@ -59,30 +49,10 @@ void Application::addPlayer(Player* player)
     }
 }
 
-Player* Application::getPlayer()
-{
-    return _player;
-}
-
-void Application::addEntity(Entity* entity)
-{
-    _entities->push_back(entity);
-}
-
-std::list<Entity*>* Application::getEntities()
-{
-    return _entities;
-}
-
 void Application::addMoveable(Moveable* moveable)
 {
     _moveables->push_back(moveable);
     _entities->push_back(moveable);
-}
-
-std::list<Moveable*>* Application::getMoveables()
-{
-    return _moveables;
 }
 
 void Application::removeExpiredMoveables()
@@ -98,9 +68,4 @@ void Application::removeExpiredMoveables()
         }
         else it++;
     }
-}
-
-void Application::removeEntity(Entity* entity)
-{
-    _entities->remove(entity);
 }

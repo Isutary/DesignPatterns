@@ -99,6 +99,9 @@
     <ClInclude Include="collisionDetector.h">
       <Filter>Header Files\Logic</Filter>
     </ClInclude>
+    <ClInclude Include="Spawner.h">
+      <Filter>Header Files\Logic</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SDLInitException.cpp">
@@ -140,9 +143,6 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="input.cpp">
-      <Filter>Source Files\Functions</Filter>
-    </ClCompile>
     <ClCompile Include="init.cpp">
       <Filter>Source Files\Functions</Filter>
     </ClCompile>
@@ -154,6 +154,12 @@
     </ClCompile>
     <ClCompile Include="collisionDetector.cpp">
       <Filter>Source Files\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="Spawner.cpp">
+      <Filter>Source Files\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="input.cpp">
+      <Filter>Source Files\Functions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

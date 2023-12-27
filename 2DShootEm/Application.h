@@ -31,3 +31,17 @@ public:
     static void removeExpiredMoveables();
     static void removeEntity(Entity* entity);
 };
+
+inline Player* Application::getPlayer() { return _player; }
+
+inline void Application::addEntity(Entity* entity) { _entities->push_back(entity); }
+
+inline std::list<Entity*>* Application::getEntities() { return _entities; }
+
+inline SDL_Window* Application::getWindow() { return _window; }
+
+inline SDL_Renderer* Application::getRenderer() { return _renderer; }
+
+inline std::list<Moveable*>* Application::getMoveables() { return _moveables; }
+
+inline void Application::removeEntity(Entity* entity) { _entities->remove(entity); }

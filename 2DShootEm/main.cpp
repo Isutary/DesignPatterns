@@ -7,6 +7,8 @@
 #include "Application.h"
 #include "Renderer.h"
 #include "Enemy.h"
+#include "Spawner.h"
+#include <iostream>
 
 int main(int argc, char* argv[])
 {
@@ -25,14 +27,23 @@ int main(int argc, char* argv[])
 
 		while (true)
 		{
+			SDL_Point mouse;
+			SDL_PumpEvents();
+			const Uint8* keyboardState = SDL_GetKeyboardState(NULL);
+			Uint32 mouseState = SDL_GetMouseState(&mouse.x, &mouse.y);
+			
 			renderer->updateScene();
-			doInput(Application::getPlayer());
+			
+			Application::getPlayer()->handleInput(keyboardState);
+			Application::getPlayer()->handleInput(SDL_BUTTON(mouseState), mouse);
+
 			if (a-- < 0)
 			{
-				Application::addMoveable(new Enemy(SDL_FPoint{ 500, 600 }, Application::getTexture("bibi-default")));
+				//Spawner::CreateEnemy();
 				a = 100;
 			}
 			capFrameRate(&then, &remainder);
+			doInput();
 		}
 	}
 	catch (SDLException& e) {
